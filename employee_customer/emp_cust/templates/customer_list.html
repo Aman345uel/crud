@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+    {% include "header.html" %}
+<main>
+<section>
+    <h1 >Customer List</h1>
+
+    <table border="1">
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+        <th>Actions</th>
+      </tr>
+      {% for customer in customers %}
+      <tr>
+        <td>{{ customer.name }}</td>
+        <td>{{ customer.email }}</td>
+        <td>{{ customer.phone_number }}</td>
+        <td>
+            <form action="{% url 'customer_update' customer.pk %}" method="get">
+                <button type="submit">Update</button>
+            </form>
+            <br>
+          <form action="{% url 'customer_delete' customer.pk %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Delete</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+    <br>
+    <a href="{% url 'customer_create' %}"><button>Create Customer</button></a>
+    
+</section>
+
+</main>
+</body>
+</html>

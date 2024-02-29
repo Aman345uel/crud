@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    {% include "header.html" %}
+<main>
+    <br>
+    <section>
+
+<h1 >Employee List</h1>
+
+<table border="1">
+    <tr>
+      <th>Name</th>
+      <th>Position</th>
+      <th>Email</th>
+      <th>Actions</th>
+    </tr>
+    {% for employee in employees %}
+    <tr>
+      <td>{{ employee.name }}</td>
+      <td>{{ employee.position }}</td>
+      <td>{{ employee.email }}</td>
+      <td>
+
+        <form action="{% url 'employee_update' employee.pk %}" method="get">
+          <button type="submit">Update</button>
+        </form>
+        <br>
+        <form action="{% url 'employee_delete' employee.pk %}" method="post">
+          {% csrf_token %}
+          <button type="submit">Delete</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+  
+<br>
+<a href="{% url 'employee_create' %}"><button>Create Employee</button></a>
+</section>
+</main>
+</body>
+</html>

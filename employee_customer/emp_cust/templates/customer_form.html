@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<h1 >Customer Form</h1>
+
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
+
+<hr>
+
+<h2>Customer List</h2>
+<ul>
+{% for customer in customers %}
+    <li>{{ customer.name }} - {{ customer.email }} - {{ customer.phone_number }}</li>
+{% endfor %}
+</ul>
+
+</body>
+</html>

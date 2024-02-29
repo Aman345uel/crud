@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<main>
+
+<h1 >Employee Form</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
+
+<hr>
+
+<h2>Employee List</h2>
+<ul>
+  {% for employees in employee %}
+    <li>{{ employee.name }} - {{ employee.position }} - {{ employee.email }}</li>
+  {% endfor %}
+</ul>
+
+</main>
+</body>
+</html>
